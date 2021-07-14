@@ -1,6 +1,7 @@
 import React from "react";
 
 // 这{list}的list是从哪里来?从父组件prop传值来的
+// test
 const List = ({ list, users }) =>
 {
   return (
@@ -25,5 +26,6 @@ const List = ({ list, users }) =>
     </table>
   )
 }
+
 
 export default List
