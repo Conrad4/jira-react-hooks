@@ -11,7 +11,6 @@ export const ProjectListScreen = () => {
   });
   const [list, setList] = useState();
   const [users, setuSers] = useState([]);
-  const [count, setcount] = useState();
   
   return (
     <div>
