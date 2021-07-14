@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { DevTools, loadServer } from "jira-dev-tool";
+
+import { loadDevTools } from "jira-dev-tool";
+
+// import { AppProviders } from "context";
 
 
 
-loadServer(() =>
+loadDevTools(() =>
   ReactDOM.render(
     <React.StrictMode>
-      <AppProviders>
-        <DevTools />
-        <App />
-      </AppProviders>
+      <App />
     </React.StrictMode>,
     document.getElementById("root")
   )
