@@ -79,7 +79,7 @@ export const useDebounce = <V>(value: V, delay?: number) => {
 };
 
 // 实现useArray
-export const useArray = <T>(initialArray: T[]) =>{
+export const useArray = <T>(initialArray: T[]) => {
   const [value, setValue] = useState(initialArray);
 
   // 这里返回setValue?
@@ -88,9 +88,15 @@ export const useArray = <T>(initialArray: T[]) =>{
     setValue,
     add: (item: T) => setValue([...value, item]),
     clear: () => setValue([]),
-  }
-
-}
+    removeIndex: (index: number) => {
+      // 把value copy一遍，解构一遍，再把结构的值为了生成新的数组，相当于浅拷贝，不这样你改数组的值不会触发更新？
+      // 如果删除数组的值不会导致更新，生成一个新的数组才会触发更新？
+      const copy = [...value];
+      copy.splice(index, 1);
+      setValue(copy);
+    },
+  };
+};
 
 export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
   const oldTitle = useRef(document.title).current;
@@ -130,7 +136,7 @@ export const subset = <
   );
   return Object.fromEntries(filteredEntries) as Pick<O, K>;
 };
-
+  
 /**
  * 返回组件的挂载状态，如果还没挂载或者已经卸载，返回false；反之，返回true
  */
