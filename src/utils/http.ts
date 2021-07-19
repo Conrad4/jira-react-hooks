@@ -9,7 +9,7 @@ interface Config extends RequestInit {
   token?: string;
   data?: object;
 }
-
+// 看下先点下fetch的api具有什么，然后提交github
 export const http = async (
   endpoint: string,
   { data, token, headers, ...customConfig }: Config = {}
