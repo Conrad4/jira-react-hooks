@@ -3899,6 +3899,11 @@ content-type@~1.0.4:
   resolved "https://registry.yarnpkg.com/content-type/-/content-type-1.0.4.tgz#e138cc75e040c727b1966fe5e5f8c9aee256fe3b"
   integrity sha512-hIP3EEPs8tB9AT1L+NUqtwOAps4mk2Zob89MWXMHjHWg9milF/j4osnnQLXBCBFBk/tvIG/tUc9mOUJiPBhPXA==
 
+context@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.nlark.com/context/download/context-1.1.4.tgz#5ff24e5f13b2a64114ad6abfb9d2dc9ba9faf630"
+  integrity sha1-X/JOXxOypkEUrWq/udLcm6n69jA=
+
 conventional-changelog-angular@^5.0.11:
   version "5.0.12"
   resolved "https://registry.npm.taobao.org/conventional-changelog-angular/download/conventional-changelog-angular-5.0.12.tgz?cache=0&sync_timestamp=1604539522350&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fconventional-changelog-angular%2Fdownload%2Fconventional-changelog-angular-5.0.12.tgz#c979b8b921cbfe26402eb3da5bbfda02d865a2b9"
@@ -7384,7 +7389,7 @@ jest@26.6.0:
     import-local "^3.0.2"
     jest-cli "^26.6.0"
 
-jira-dev-tool@^1.1.0:
+jira-dev-tool@^1.1.0, jira-dev-tool@^1.7.61:
   version "1.7.61"
   resolved "https://registry.nlark.com/jira-dev-tool/download/jira-dev-tool-1.7.61.tgz#32477c1e0f9f9f46ad5ffd61409ac05a1422c17c"
   integrity sha1-Mkd8Hg+fn0atX/1hQJrAWhQiwXw=
@@ -10010,7 +10015,7 @@ qs@6.7.0:
 
 qs@^6.10.1:
   version "6.10.1"
-  resolved "https://registry.npm.taobao.org/qs/download/qs-6.10.1.tgz?cache=0&sync_timestamp=1616385511119&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fqs%2Fdownload%2Fqs-6.10.1.tgz#4931482fa8d647a5aab799c5271d2133b981fb6a"
+  resolved "https://registry.npm.taobao.org/qs/download/qs-6.10.1.tgz?cache=0&sync_timestamp=1616385328325&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fqs%2Fdownload%2Fqs-6.10.1.tgz#4931482fa8d647a5aab799c5271d2133b981fb6a"
   integrity sha1-STFIL6jWR6Wqt5nFJx0hM7mB+2o=
   dependencies:
     side-channel "^1.0.4"
