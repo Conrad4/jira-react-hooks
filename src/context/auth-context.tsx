@@ -1,11 +1,26 @@
 import * as auth from "auth-provider";
 import React, { ReactNode, useState } from "react";
 import { User } from "types/user";
+import { useMount } from "utils";
 
 interface AuthForm {
     username: string,
     password: string
 }
+
+// 获取localStorage里面的数据，bootStrap初始化user数据
+const bootstrapUser = async () => {
+    //user默认是null，在setState定义的地方
+   let user = null;
+    //getToken是auth-provider封装的的函数，getToken从localStorage获取 里面的token数据
+   const token = auth.getToken();
+   if (token) {
+      //这里不使用useHttp，用http可以自己指定token值
+     const data = await http("me", { token });
+     user = data.user;
+   }
+   return user;
+ };
 
 const AuthContext = React.createContext<
     {   
@@ -29,6 +44,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const login = (form: AuthForm) => auth.login(form).then(setUser);
     const register = (form: AuthForm) => auth.register(form).then(setUser);
     const logout = () => auth.logout().then(() => setUser(null));
+    
+    useMount(() => {
+        bootstrapUser().then(setUser);
+      });
 
     return <AuthContext.Provider value={{ user, login, register, logout }} />
 

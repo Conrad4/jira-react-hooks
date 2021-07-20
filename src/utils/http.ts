@@ -9,9 +9,10 @@ interface Config extends RequestInit {
   token?: string;
   data?: object;
 }
-// 看下先点下fetch的api具有什么，然后提交github
+// 看下先点下 fetch的api具有什么
 export const http = async (
   endpoint: string,
+  //这是什么意思？={空}，因为在这里是{}可选的，但是{}?这样写法不被允许，所以加上{空} 就相当于加上参数一个默认的值就相当于是可选的
   { data, token, headers, ...customConfig }: Config = {}
 ) => {
   const config = {
@@ -20,12 +21,12 @@ export const http = async (
       Authorization: token ? `Bearer ${token}` : "",
       "Content-Type": data ? "application/json" : "",
     },
-    ...customConfig,
+    ...customConfig,  
   };
 
   if (config.method.toUpperCase() === "GET") {
     endpoint += `?${qs.stringify(data)}`;
-  } else {
+  } else { 
     config.body = JSON.stringify(data || {});
   }
 

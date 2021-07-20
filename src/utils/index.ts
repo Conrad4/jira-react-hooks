@@ -90,7 +90,7 @@ export const useArray = <T>(initialArray: T[]) => {
     clear: () => setValue([]),
     removeIndex: (index: number) => {
       // 把value copy一遍，解构一遍，再把结构的值为了生成新的数组，相当于浅拷贝，不这样你改数组的值不会触发更新？
-      // 如果删除数组的值不会导致更新，生成一个新的数组才会触发更新？
+      // 如果删除数组的值不会导致更新，生成一个新的数组才会触发更新？,或者改成setVal(pre=> pre.splice(index,1))
       const copy = [...value];
       copy.splice(index, 1);
       setValue(copy);
