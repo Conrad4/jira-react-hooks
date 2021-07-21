@@ -5,6 +5,8 @@ import 'index.css';
 import reportWebVitals from './reportWebVitals';
 
 import { loadDevTools } from "jira-dev-tool";
+// 务必在jira-dev-tool后面引入,因为dev里面有样式，我们需要用antd覆盖他
+import 'antd/dist/antd.less'; 
 import { AppProviders } from 'context';
 
 // import { AppProviders } from "context";

@@ -1,6 +1,6 @@
-import qs from "qs";
 import * as auth from "auth-provider";
 import { useAuth } from "context/auth-context";
+import qs from "qs";
 import { useCallback } from "react";
 
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -94,7 +94,7 @@ type PersonKeys = keyof Person;
 type PersonOnlyName = Pick<Person, "name" | "age">;
 type Age = Exclude<PersonKeys, "name">;
 
-// Partial 的实现
+// Partial 的实现，把传入的泛型T里面遍历，P是 key-键，T[P]是键值
 type Partial<T> = {
   [P in keyof T]?: T[P];
 };
