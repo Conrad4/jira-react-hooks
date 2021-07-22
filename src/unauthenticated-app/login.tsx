@@ -29,10 +29,10 @@ export const LoginScreen = () => {
   return (
     <Form onFinish={handleSubmit}>
       <Form.Item
-        name={"username"}
+        name="username"
         rules={[{ required: true, message: "请输入用户名" }]}
       >
-        <Input placeholder={"用户名"} type="text" id={"username"} />
+        <Input placeholder="用户名" type="text" id={"username"} />
       </Form.Item>
       <Form.Item
         name={"password"}
