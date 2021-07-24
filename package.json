@@ -18,6 +18,7 @@
     "antd": "^4.16.8",
     "context": "^1.1.4",
     "craco-less": "^1.18.0",
+    "dayjs": "^1.10.6",
     "imooc-jira-tool": "^1.0.3",
     "jira-dev-tool": "^1.7.61",
     "json-server": "^0.16.3",

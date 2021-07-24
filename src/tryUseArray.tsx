@@ -21,6 +21,7 @@ const TryUseArray = () => {
         // add({ name: "david" });
         // 期待这里报错：Argument of type 'string' is not assignable to parameter of type 'number'.
         // removeIndex("123");
+        
     });
     return (
         <div>
