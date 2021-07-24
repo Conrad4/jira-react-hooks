@@ -22,11 +22,11 @@ export const List = ({ list, users }: ListProps) => {
         {
           title: "名称",
           dataIndex: "name",
-          // 排序中文字符
+          // 排序名字中文字符
           sorter: (a, b) => a.name.localeCompare(b.name),
         },
         {
-          title: "负责人",
+          title: "负责人",  
           render(value, project) {
             return (
               <span>
