@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { List } from "screens/project-list/list";
 import { SearchPanel } from "screens/project-list/search-panel";
@@ -21,6 +22,7 @@ export const ProjectListScreen = () => {
 
   useEffect(() => {
     client("projects", { data: cleanObject(debouncedParam) }).then(setList);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedParam]);
 
   useMount(() => {

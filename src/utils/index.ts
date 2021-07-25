@@ -3,19 +3,23 @@ import { useEffect, useRef, useState } from "react";
 // 感叹号!是求反
 export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 
+
+// 当他为无意义的时候，在下面cleanObject里面使用使用
 export const isVoid = (value: unknown) =>
   value === undefined || value === null || value === "";
 
-// let a: object
-// a = {name: 'jack'}
-// a = () => {
-// }
-// a = new RegExp('')
-//
-// let b: { [key: string]: unknown }
-// b = {name: 'Jack'}
-// b = () => {}
-// 在一个函数里，改变传入的对象本身是不好的
+/* let a: object
+a = {name: 'jack'}
+a = () => {
+}
+a = new RegExp('')
+
+let b: { [key: string]: unknown }
+b = {name: 'Jack'}
+b = () => {}
+在一个函数里，改变传入的对象本身是不好的
+要的是key键（key）值（unknown）对，（即键值对），把object类型换成 object?: { [key: string]: unknown }
+ */
 export const cleanObject = (object?: { [key: string]: unknown }) => {
   // Object.assign({}, object)
   if (!object) {
@@ -34,7 +38,9 @@ export const cleanObject = (object?: { [key: string]: unknown }) => {
 export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // TODO 依赖型里面加上callback
+    // eslint-disable-next-line react-hooks/exhaustive-deps，
+    // 用来禁止控制栏报警告，按他eslint检查出来的警告提示写反而有循环的问题
   }, []);
 };
 
@@ -64,7 +70,7 @@ export const useMount = (callback: () => void) => {
 //     log()#3 // 发现 timeout#2! 取消之，然后设置timeout#3
 //             // 所以，log()#3 结束后，就只剩timeout#3在独自等待了
 
-// 后面用泛型来规范类型
+// 后面用泛型来规范类型 
 export const useDebounce = <V>(value: V, delay?: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
@@ -78,7 +84,9 @@ export const useDebounce = <V>(value: V, delay?: number) => {
   return debouncedValue;
 };
 
+
 // 实现useArray
+
 export const useArray = <T>(initialArray: T[]) => {
   const [value, setValue] = useState(initialArray);
 

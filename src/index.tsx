@@ -1,25 +1,23 @@
+// 务必在jira-dev-tool后面引入,因为dev里面有样式，我们需要用antd覆盖他
+import 'antd/dist/antd.less';
+import App from 'App';
+import { AppProviders } from 'context';
+import { DevTools, loadServer } from "jira-dev-tool";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from 'App';
-import 'index.css';
 import reportWebVitals from './reportWebVitals';
-
-import { loadDevTools } from "jira-dev-tool";
-// 务必在jira-dev-tool后面引入,因为dev里面有样式，我们需要用antd覆盖他
-import 'antd/dist/antd.less'; 
-import { AppProviders } from 'context';
 
 // import { AppProviders } from "context";
 
 
 
-loadDevTools(() =>
+loadServer(() =>
   ReactDOM.render(
     <React.StrictMode>
       <AppProviders>
+        <DevTools />
         <App />
       </AppProviders>
-
 
     </React.StrictMode>,
     document.getElementById("root")
@@ -31,3 +29,5 @@ loadDevTools(() =>
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
