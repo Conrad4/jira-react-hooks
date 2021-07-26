@@ -1,9 +1,9 @@
-import { Table } from "antd";
+import { Table, TableProps } from "antd";
 import dayjs from "dayjs";
 import React from "react";
 import { User } from "screens/project-list/search-panel";
 
-interface Project {
+export interface Project {
   id: string;
   name: string;
   personId: string;
@@ -11,12 +11,14 @@ interface Project {
   organization: string;
   created: number;
 }
-interface ListProps {
-  list: Project[];
+
+//ListProps有两部分组成，Table源码中上面所有属性的集合，TableProps和users
+interface ListProps extends TableProps<Project> {
   users: User[];
 }
 
-export const List = ({ list, users }: ListProps) => {
+// 不管里面ListProps有传入什么类型，第一件事先把users类型取出来，剩下的类型是...props，type PropsType = Omit<ListProps,'users'>
+export const List = ({  users,...props }: ListProps) => {
   return (
     <Table
       pagination={false}
@@ -57,7 +59,8 @@ export const List = ({ list, users }: ListProps) => {
         },
 
       ]}
-      dataSource={list}
+      // dataSource={list},把这种写法换成下面，用...props解构出里面的props，对应上面传入的类型 ，这是在Table源码中的TableProps具有的props
+      {...props}
     />
   );
 };
