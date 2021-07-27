@@ -44,6 +44,7 @@ export const register = (data: { username: string; password: string }) => {
     if (response.ok) {
       return handleUserResponse(await response.json());
     } else {
+      // 这里需要修改成 await response.json()
       return Promise.reject(await response.json());
     }
   });

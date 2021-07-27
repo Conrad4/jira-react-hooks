@@ -15,7 +15,7 @@ const defaultInitialState: State<null> = {
   error: null,
 };
 
-//initialState?: State<T> 这个是用户传入的state，用户的优先级更高，传入的参数的泛型写在前面
+//initialState?: State<D> 这个是用户传入的state，用户的优先级更高，传入的参数的泛型写在前面
 export const useAsync = <D>(initialState?: State<D>) => {
   const [state, setState] = useState<State<D>>({
     ...defaultInitialState,
