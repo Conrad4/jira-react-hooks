@@ -1,6 +1,7 @@
 import { Button, Form, Input } from "antd";
 import { useAuth } from "context/auth-context";
 import React from "react";
+import { LongButton } from "unauthenticated-app";
 import { useAsync } from "utils/use-async";
 
 // interface Base {
@@ -63,9 +64,9 @@ export const RegisterScreen = ({ onError, }: { onError: (error: Error) => void; 
         <Input placeholder={"确认密码"} type="password" id={"cpassword"} />
       </Form.Item>
       <Form.Item>
-        <Button htmlType="submit" type="primary">
+        <LongButton loading={isLoading} htmlType={"submit"} type={"primary"}>
           注册
-        </Button>
+        </LongButton>
       </Form.Item>
     </Form>
   );

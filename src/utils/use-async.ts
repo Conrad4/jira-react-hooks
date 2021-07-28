@@ -15,8 +15,19 @@ const defaultInitialState: State<null> = {
   error: null,
 };
 
+// 默认是false
+const defaultConfig = {
+  throwOnError: false,
+};
+
 //initialState?: State<D> 这个是用户传入的state，用户的优先级更高，传入的参数的泛型写在前面
-export const useAsync = <D>(initialState?: State<D>) => {
+// 遇到异常时才会抛出异常，不是每次都要try catch，所以思路让抛出异常throwOnError成为一个可选选项
+export const useAsync = <D>(
+  initialState?: State<D>,
+  initialConfig?: typeof defaultConfig
+) => {
+  // 让传入的参数...initialConfig覆盖前面的 defaultConfig，这样说明是有错误传入了
+  const config = { ...defaultConfig, ...initialConfig };
   const [state, setState] = useState<State<D>>({
     ...defaultInitialState,
     ...initialState,
@@ -49,6 +60,7 @@ export const useAsync = <D>(initialState?: State<D>) => {
       })
       .catch((error) => {
         setError(error);
+        if (config.throwOnError) return Promise.reject(error);
         return error;
       });
   };
