@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { Button, Spin, Typography } from "antd";
+import { DevTools } from "jira-dev-tool";
 
 export const Row = styled.div<{
-    gap?: number | boolean;
-    // 下面控制justify-content
-    between?: boolean;
-    marginBottom?: number;
+  gap?: number | boolean;
+  // 下面控制justify-content
+  between?: boolean;
+  marginBottom?: number;
 }>`
   display: flex;
   align-items: center;
@@ -20,10 +21,30 @@ export const Row = styled.div<{
     margin-bottom: 0 !important;
     /* 这个marginRight 有时候让它为2rem，有时候3，有时候还可以让他不存在， 具有灵活机动性，通过传props自定义的组件化思想，第一个问号gap类型是否为number，不是则流程来到gap的第二个？代表判断gap存不存在，存在是2rem，gap */
     margin-right: ${(props) =>
-        typeof props.gap === "number"
-            ? props.gap + "rem"
-            : props.gap
-                ? "2rem"
-                : undefined};
+    typeof props.gap === "number"
+      ? props.gap + "rem"
+      : props.gap
+        ? "2rem"
+        : undefined};
   }
 `;
+
+// 这样写法是为什么？css in js，为了写css样式
+const FullPage = styled.div`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const FullPageLoading = () => (
+  <FullPage>
+    <Spin size={"large"} />
+  </FullPage>
+);
+export const FullPageErrorFallback = ({ error }: { error: Error | null }) => (
+  <FullPage>
+    <DevTools />
+    <Typography.Text type={"danger"}>{error?.message}</Typography.Text>
+  </FullPage>
+);
