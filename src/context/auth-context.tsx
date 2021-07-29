@@ -1,5 +1,5 @@
 import * as auth from "auth-provider";
-import { FullPageLoading } from "components/lib";
+import { FullPageErrorFallback, FullPageLoading } from "components/lib";
 import React, { ReactNode } from "react";
 import { User } from "screens/project-list/search-panel";
 import { useMount } from "utils";
