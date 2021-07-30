@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 // 感叹号!是求反
 export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 
-
 // 当他为无意义的时候，在下面cleanObject里面使用使用
 export const isVoid = (value: unknown) =>
   value === undefined || value === null || value === "";
@@ -38,7 +37,7 @@ export const cleanObject = (object?: { [key: string]: unknown }) => {
 export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback();
-       // TODO 依赖项里加上callback会造成无限循环，这个和useCallback以及useMemo有关系
+    // TODO 依赖项里加上callback会造成无限循环，这个和useCallback以及useMemo有关系
     // eslint-disable-next-line react-hooks/exhaustive-deps
     // 用来禁止控制栏报警告，按他eslint检查出来的警告提示写反而有循环的问题
   }, [callback]);
@@ -70,7 +69,7 @@ export const useMount = (callback: () => void) => {
 //     log()#3 // 发现 timeout#2! 取消之，然后设置timeout#3
 //              所以，log()#3 结束后，就只剩timeout#3在独自等待了
 
-// 后面用泛型来规范类型 
+// 后面用泛型来规范类型
 export const useDebounce = <V>(value: V, delay?: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
@@ -83,7 +82,6 @@ export const useDebounce = <V>(value: V, delay?: number) => {
 
   return debouncedValue;
 };
-
 
 // 实现useArray
 
@@ -106,3 +104,19 @@ export const useArray = <T>(initialArray: T[]) => {
   };
 };
 
+export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
+  const oldTitle = document.title;
+
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+
+  useEffect(() => {
+    // 组件卸载后，变回默认title，之后没有指定title的组件都将使用默认title
+    return () => {
+      if (!keepOnUnmount) {
+        document.title = oldTitle;
+      }
+    };
+  }, []);
+};

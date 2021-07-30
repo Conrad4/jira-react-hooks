@@ -6,11 +6,16 @@ import right from "assets/right.svg";
 import React, { useState } from "react";
 import { LoginScreen } from "unauthenticated-app/login";
 import { RegisterScreen } from "unauthenticated-app/register";
+import { useDocumentTitle } from "utils";
 
 export const UnauthenticatedApp = () => {
   const [isRegister, setIsRegister] = useState(false);
   // 用来处理登录时，没输入用户名或者输入错误信息 的红色报错提示
   const [error, setError] = useState<Error | null>(null);
+  
+  // 可以在登录界面，头部标题显示这个信息
+  useDocumentTitle("请登录注册以继续");
+
   return (
     <Container>
       <Header />
