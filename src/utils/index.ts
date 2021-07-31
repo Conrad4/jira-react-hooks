@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // 感叹号!是求反
 export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
@@ -105,8 +105,10 @@ export const useArray = <T>(initialArray: T[]) => {
 };
 
 export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
-  const oldTitle = document.title;
+  const oldTitle = useRef(document.title).current;
 
+  // 页面加载时: 旧title
+  // 加载后：新title
   useEffect(() => {
     document.title = title;
   }, [title]);
@@ -115,8 +117,10 @@ export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
     // 组件卸载后，变回默认title，之后没有指定title的组件都将使用默认title
     return () => {
       if (!keepOnUnmount) {
+        // 如果不指定下面[ ]的依赖[keepOnUnmount, oldTitle]，读到的就是旧title
         document.title = oldTitle;
       }
     };
-  }, []);
+    // 如果不指定下面[ ]的依赖[keepOnUnmount, oldTitle]，读到的就是旧title
+  }, [keepOnUnmount, oldTitle]);
 };
