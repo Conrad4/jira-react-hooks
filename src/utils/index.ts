@@ -105,23 +105,10 @@ export const useArray = <T>(initialArray: T[]) => {
 };
 
 export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
-  // 使用useRef将数据持久化来满足需求，而不是使用闭包特性
+
+  
   const oldTitle = useRef(document.title).current;
 
-  // 页面加载时: 旧title
-  // 加载后：新title
-  useEffect(() => {
-    document.title = title;
-  }, [title]);
 
-  useEffect(() => {
-    return () => {
-      if (!keepOnUnmount) {
-        // 在组件卸载后，变回默认title，之后没有指定title的组件都将使用旧title
-        // 如果不指定下面[ ]的依赖[keepOnUnmount, oldTitle]，读到的就是旧title
-        document.title = oldTitle;
-      }
-    };
-    // 如果不指定下面[ ]的依赖[keepOnUnmount, oldTitle]，读到的就是旧title
-  }, [keepOnUnmount, oldTitle]);
+
 };
