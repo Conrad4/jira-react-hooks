@@ -105,10 +105,20 @@ export const useArray = <T>(initialArray: T[]) => {
 };
 
 export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
-
-  
+  // 先把 当前的标题 保存下来
   const oldTitle = useRef(document.title).current;
 
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
 
-
+  // 第二个useEffect来判断keepOnUnmount为false的情况
+  useEffect(() => {
+    return () => {
+      // 当值为false的时候，把默认的值赋给标题
+      if (!keepOnUnmount) {
+        document.title = oldTitle;
+      }
+    };
+  }, [keepOnUnmount, oldTitle]);
 };
