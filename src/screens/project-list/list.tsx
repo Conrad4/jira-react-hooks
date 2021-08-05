@@ -2,7 +2,9 @@ import { Table, TableProps } from "antd";
 import dayjs from "dayjs";
 import React from "react";
 import { User } from "screens/project-list/search-panel";
+import { Link } from "react-router-dom";
 
+// TODO 把所有ID都改成number类型 
 export interface Project {
   id: string;
   name: string;
@@ -28,6 +30,9 @@ export const List = ({  users,...props }: ListProps) => {
           dataIndex: "name",
           // 排序名字中文字符
           sorter: (a, b) => a.name.localeCompare(b.name),
+          render:(value,project) =>{
+            return <Link to={String(project.id)}>{value}</Link>
+          }
         },
         {
           title: "部门",
