@@ -122,3 +122,9 @@ export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
     };
   }, [keepOnUnmount, oldTitle]);
 };
+
+// 重置路由的状态，还可以刷新整个页面，应用在点击logo，切换到根路由
+export const  resetRoute = ()=>{
+  // 将origin根路由赋给跳转
+  window.location.href = window.location.origin
+}
