@@ -12,6 +12,8 @@ import { useUrlQueryParam } from './../../utils/url';
 // 我们希望，在静态代码中，就能找到其中的一些错误 -> 强类型
 export const ProjectListScreen = () => {
 
+    // 基本类型，可以放到依赖里；组件状态，可以放到依赖里；非组件状态的对象，绝不可以放到依赖里
+  // https://codesandbox.io/s/keen-wave-tlz9s?file=/src/App.js
   const [param, setParam] = useUrlQueryParam(["name", "personId"]);
 
   const debouncedParam = useDebounce(param, 200);

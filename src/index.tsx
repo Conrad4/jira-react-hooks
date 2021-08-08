@@ -1,11 +1,13 @@
-// 务必在jira-dev-tool后面引入,因为dev里面有样式，我们需要用antd覆盖他
-import 'antd/dist/antd.less';
+import { DevTools, loadServer } from "jira-dev-tool";
 import App from 'App';
 import { AppProviders } from 'context';
-import { DevTools, loadServer } from "jira-dev-tool";
+
+// 务必在jira-dev-tool后面引入,因为dev里面有样式，我们需要用antd覆盖他
+import 'antd/dist/antd.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
+import "./wdyr";
 
 // import { AppProviders } from "context";
 
