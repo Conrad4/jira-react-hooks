@@ -146,3 +146,16 @@ export const  resetRoute = ()=>{
  );
  return Object.fromEntries(filteredEntries) as Pick<O, K>;
 };
+
+// 自己尝试写，还是存在一些问题
+// export const useDebounceone = (value,delay) =>{
+//   const [debounceValue, setDebounceValue] = useState();
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       setDebounceValue(value);
+//     }, delay);
+//       //clearTimeout webapi自带的
+//     return () => clearTimeout(timer);
+//   }, [value, delay]);
+//   return debounceValue;
+// };
