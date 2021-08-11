@@ -92,11 +92,13 @@ export const useArray = <T>(initialArray: T[]) => {
   return {
     value,
     setValue,
+    //item是个数组
     add: (item: T) => setValue([...value, item]),
     clear: () => setValue([]),
     removeIndex: (index: number) => {
       // 把value copy一遍，解构一遍，再把结构的值为了生成新的数组，相当于浅拷贝，不这样你改数组的值不会触发更新？
-      // 如果删除数组的值不会导致更新，生成一个新的数组才会触发更新？,或者改成setVal(pre=> pre.splice(index,1))
+      // 如果删除数组的值不会导致更新，生成一个新的数组才会触发更新？,或者改成
+      // setVal(value=> value.splice(index,1)),看下掘金https://juejin.cn/post/6844904157829136398#heading-2，数组的坑
       const copy = [...value];
       copy.splice(index, 1);
       setValue(copy);
@@ -124,38 +126,41 @@ export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
 };
 
 // 重置路由的状态，还可以刷新整个页面，应用在点击logo，切换到根路由
-export const  resetRoute = ()=>{
+export const resetRoute = () => {
   // 将origin根路由赋给跳转
-  window.location.href = window.location.origin
-}
+  window.location.href = window.location.origin;
+};
 
 /**
  * 传入一个对象，和键集合，返回对应的对象中的键值对
  * @param obj
  * @param keys
  */
- export const subset = <
- O extends { [key in string]: unknown },
- K extends keyof O
+export const subset = <
+  O extends { [key in string]: unknown },
+  K extends keyof O
 >(
- obj: O,
- keys: K[]
+  obj: O,
+  keys: K[]
 ) => {
- const filteredEntries = Object.entries(obj).filter(([key]) =>
-   keys.includes(key as K)
- );
- return Object.fromEntries(filteredEntries) as Pick<O, K>;
+  const filteredEntries = Object.entries(obj).filter(([key]) =>
+    keys.includes(key as K)
+  );
+  return Object.fromEntries(filteredEntries) as Pick<O, K>;
 };
 
-// 自己尝试写，还是存在一些问题
-// export const useDebounceone = (value,delay) =>{
-//   const [debounceValue, setDebounceValue] = useState();
-//   useEffect(() => {
-//     const timer = setTimeout(() => {
-//       setDebounceValue(value);
-//     }, delay);
-//       //clearTimeout webapi自带的
-//     return () => clearTimeout(timer);
-//   }, [value, delay]);
-//   return debounceValue;
-// };
+export const useDebounceone = <V>(value: string, delay?: number) => {
+  const [debounceValue, setDebounceValue] = useState(value);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDebounceValue(value);
+    }, delay);
+    return () => {
+      // web api自带的
+      clearTimeout(timeout);
+    };
+  }, [value, delay]);
+
+  return debounceValue;
+};
