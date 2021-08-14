@@ -26,16 +26,16 @@ const bootstrapUser = async () => {
 };
 // 状态管理使用useContext hooks和context知识点去替换之前使用redux
 const AuthContext = React.createContext<
-    {
+    | {
         user: User | null,
         login: (form: AuthForm) => Promise<void>,
         register: (form: AuthForm) => Promise<void>,
         logout: () => Promise<void>,
     } | undefined>(undefined);
-    // 使用在开发工具中，实际没什么用处
+// 使用在开发工具中，实际没什么用处
 AuthContext.displayName = "AuthContext";
 
-// 进行逻辑处理和状态管理
+// Provider进行逻辑处理和状态管理
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // const [user, setUser] = useState<User | null>(null);
     const {
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 setUser(user)
             })
         } */
-        // auth只是在auth-provide起的别名
+    // auth只是在auth-provide起的别名
     const login = (form: AuthForm) => auth.login(form).then(setUser);
     const register = (form: AuthForm) => auth.register(form).then(setUser);
     const logout = () => auth.logout().then(() => setUser(null));
@@ -64,12 +64,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         run(bootstrapUser());
     });
 
-    if(isIdle || isLoading){
-        return <FullPageLoading/>
+    if (isIdle || isLoading) {
+        return <FullPageLoading />
     }
     if (isError) {
         return <FullPageErrorFallback error={error} />;
-      }
+    }
 
     return <AuthContext.Provider value={{ user, login, register, logout }} />
 

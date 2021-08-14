@@ -149,7 +149,7 @@ export const subset = <
   return Object.fromEntries(filteredEntries) as Pick<O, K>;
 };
 
-export const useDebounceone = <V>(value: string, delay?: number) => {
+export const useDebounceone = <V>(value: V, delay?: number) => {
   const [debounceValue, setDebounceValue] = useState(value);
 
   useEffect(() => {
